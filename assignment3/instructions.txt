@@ -1,0 +1,14 @@
+Running on python3
+
+matplotlib library is required to plot the data. (Using command sudo apt install python3-matplotlib, sudo apt update  sudo apt upgrade is required if version is old)
+// Comment the block if facing problems, algorithms should be fine.
+
+data.txt is preset in order with algorithms need to be tested, manually erased them to record fresh data if needed, new data would be automatically recorded.
+
+Selections available:
+No_Preemption_mode = ["FCFS","SJN","Priority","RR","plot"]
+
+After enter RR and entered the quanta:
+rrmode = ["FCFS","SRTN","Priority"]
+
+Run the program using python3 cpu_scheduling.py, data.txt and processes_3.txt need to be inside same folder.
