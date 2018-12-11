@@ -1,2 +1,8 @@
-No_Preemption,FCFS,2369.929
-No_Preemption,SJN,2010.929
+No_Preemption-FCFS,2369.929
+No_Preemption-SJN,2010.929
+No_Preemption-Priority,2221.357
+Round_Robin-fcfs-10,4578.214
+Round_Robin-fcfs-100,4162
+Round_Robin-fcfs-1000,2369.929
+Round_Robin-SRTN-50,2090.786
+Round_Robin-Priority-50,2309.5

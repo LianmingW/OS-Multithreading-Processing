@@ -1,6 +1,7 @@
 import time
 from collections import deque
 from statistics import mean
+from matplotlib import pyplot as plt
 
 # Class object that stores the PCB information
 class PCB:
@@ -105,7 +106,7 @@ class CPU(Scheduler):
 		# Print the stat when all process finished running
 		self.print_stat()
 		with open("./data.txt","a") as outfile:
-			outfile.write("No_Preemption,{},{}\n".format(mode,round(mean([process.wait_time for process in self.finished_process]),3)))
+			outfile.write("No_Preemption-{},{}\n".format(mode,round(mean([process.wait_time for process in self.finished_process]),3)))
 
 	# Round Robin methods
 	def Round_Robin(self,mode,quanta):
@@ -163,12 +164,12 @@ class CPU(Scheduler):
 
 		self.print_stat()
 		with open("./data.txt","a") as outfile:
-			outfile.write("Round_Robin,{},{},{}\n".format(mode,quanta,round(mean([process.wait_time for process in self.finished_process]),3)))
+			outfile.write("Round_Robin-{}-{},{}\n".format(mode,quanta,round(mean([process.wait_time for process in self.finished_process]),3)))
 
 
 
 rrmode = ["FCFS","SRTN","Priority"]
-No_Preemption_mode = ["FCFS","SJN","Priority","RR"]
+No_Preemption_mode = ["FCFS","SJN","Priority","RR","plot"]
 
 
 # Comparators, return in a list form, so if the first parameter is the same, we check their arrival time next
@@ -217,6 +218,23 @@ def main():
 			else:
 				print("Please select from belowing modes:")
 				print(rrmode)
+
+		# plot the average_wait_time for the methods we ran.
+		elif (selection == "plot"):
+			with open("./data.txt","r") as infile:
+				lines = infile.read().split('\n')
+				
+				data = [line.split(',') for line in lines]
+				names = [item[0] for item in data[:-1]]
+				average_wait_time = [item[1] for item in data[:-1]]
+				x = range(len(data)-1)
+				plt.xticks(x,names)
+				plt.xlabel("Methods")
+				plt.ylabel("Time Spent(lower the better)")
+				plt.title("average_wait_time")
+				plt.bar(names,average_wait_time)
+				plt.show()
+
 		else:
 			print("Please select from belowing modes:")
 			print(No_Preemption_mode)
