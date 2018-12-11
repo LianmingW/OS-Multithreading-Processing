@@ -104,6 +104,8 @@ class CPU(Scheduler):
 			self.current_time += 1
 		# Print the stat when all process finished running
 		self.print_stat()
+		with open("./data.txt","a") as outfile:
+			outfile.write("No_Preemption,{},{}\n".format(mode,round(mean([process.wait_time for process in self.finished_process]),3)))
 
 	# Round Robin methods
 	def Round_Robin(self,mode,quanta):
@@ -160,6 +162,8 @@ class CPU(Scheduler):
 			self.current_time += 1
 
 		self.print_stat()
+		with open("./data.txt","a") as outfile:
+			outfile.write("Round_Robin,{},{},{}\n".format(mode,quanta,round(mean([process.wait_time for process in self.finished_process]),3)))
 
 
 
